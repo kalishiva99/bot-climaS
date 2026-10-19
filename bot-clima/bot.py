@@ -136,8 +136,9 @@ def buscar_ciudad(nombre_ciudad):
     }
 
     headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-    }
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) BotClimaDiscord"
+}
+response = requests.get(url, headers=headers)
 
     try:
         respuesta = requests.get(url, params=parametros, headers=headers, timeout=10)
