@@ -128,8 +128,15 @@ def buscar_ciudad(nombre_ciudad):
     try:
         respuesta = requests.get(url, params=parametros, headers=headers, timeout=10)
         respuesta.raise_for_status()
+        
+        # Verificar si Cloudflare devolvió HTML en lugar de JSON
+        content_type = respuesta.headers.get("content-type", "")
+        if "application/json" not in content_type:
+            print("Error: Cloudflare está bloqueando la IP del servidor con un desafío HTML.")
+            return None
+            
         datos = respuesta.json()
-
+        
         if "results" in datos and len(datos["results"]) > 0:
             resultado = datos["results"][0]
             nombre = resultado.get("name")
