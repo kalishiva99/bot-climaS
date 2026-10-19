@@ -49,6 +49,7 @@ CIUDADES = {
         "nombre": "Concepción, Chile",
         "timezone": "America/Santiago"
     }
+}
 
 
 CIUDAD_POR_DEFECTO = "temuco"
