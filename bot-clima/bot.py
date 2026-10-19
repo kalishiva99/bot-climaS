@@ -11,6 +11,24 @@ import os
 from datetime import datetime, time
 from zoneinfo import ZoneInfo
 
+import threading
+from http.server import HTTPServer, BaseHTTPRequestHandler
+
+# Servidor web mínimo para engañar el escaneo de puertos de Render
+class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        self.send_response(200)
+        self.end_headers()
+        self.wfile.write(b"Bot activo 24/7")
+
+def run_web_server():
+    port = int(os.environ.get("PORT", 8080))
+    server = HTTPServer(('0.0.0.0', port), SimpleHTTPRequestHandler)
+    server.serve_forever()
+
+# Iniciar el servidor web en un hilo secundario antes de arrancar el bot
+threading.Thread(target=run_web_server, daemon=True).start()
+
 # --- Ciudades guardadas por defecto / accesos rápidos ---
 CIUDADES = {
     "temuco": {"lat": -38.7359, "lon": -72.5904, "nombre": "Temuco, Chile"},
