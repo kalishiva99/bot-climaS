@@ -121,10 +121,10 @@ def buscar_ciudad(nombre_ciudad):
         "format": "json"
     }
 
-headers = {
+    headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
     }
-    
+
     try:
         respuesta = requests.get(url, params=parametros, headers=headers, timeout=10)
         respuesta.raise_for_status()
@@ -143,8 +143,8 @@ headers = {
                 "timezone": resultado.get("timezone", "auto")
             }
     except Exception as e:
-        print(f"Error buscando ciudad {nombre_ciudad}: {e}")
-
+        print(f"Error buscando ciudad: {e}")
+    
     return None
 
 
