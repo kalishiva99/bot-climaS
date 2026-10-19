@@ -31,11 +31,25 @@ threading.Thread(target=run_web_server, daemon=True).start()
 
 # --- Ciudades guardadas por defecto / accesos rápidos ---
 CIUDADES = {
-    "temuco": {"lat": -38.7359, "lon": -72.5904, "nombre": "Temuco, Chile"},
-    "santiago": {"lat": -33.4489, "lon": -70.6693, "nombre": "Santiago, Chile"},
-    "valparaiso": {"lat": -33.0472, "lon": -71.6127, "nombre": "Valparaíso, Chile"},
-    "concepcion": {"lat": -36.8201, "lon": -73.0444, "nombre": "Concepción, Chile"},
-}
+    "santiago": {
+        "lat": -33.4489,
+        "lon": -70.6693,
+        "nombre": "Santiago, Chile",
+        "timezone": "America/Santiago"
+    },
+    "temuco": {
+        "lat": -38.7397,
+        "lon": -72.5901,
+        "nombre": "Temuco, Chile",
+        "timezone": "America/Santiago"
+    },
+    "concepcion": {
+        "lat": -36.827,
+        "lon": -73.0498,
+        "nombre": "Concepción, Chile",
+        "timezone": "America/Santiago"
+    }
+
 
 CIUDAD_POR_DEFECTO = "temuco"
 ARCHIVO_CONFIG = "config.json"
@@ -425,4 +439,8 @@ if not TOKEN and os.path.exists("token.txt"):
     with open("token.txt", "r") as archivo:
         TOKEN = archivo.read().strip()
 
-bot.run(TOKEN)
+if __name__ == "__main__":
+    if TOKEN:
+        bot.run(TOKEN)
+    else:
+        print("Error: No se encontró el token de Discord.")
