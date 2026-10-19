@@ -50,6 +50,7 @@ CIUDADES = {
         "timezone": "America/Santiago"
     }
 
+    
 CIUDAD_POR_DEFECTO = "temuco"
 ARCHIVO_CONFIG = "config.json"
 
