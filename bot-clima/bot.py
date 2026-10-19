@@ -121,8 +121,12 @@ def buscar_ciudad(nombre_ciudad):
         "format": "json"
     }
 
+headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+    }
+    
     try:
-        respuesta = requests.get(url, params=parametros, timeout=10)
+        respuesta = requests.get(url, params=parametros, headers=headers, timeout=10)
         respuesta.raise_for_status()
         datos = respuesta.json()
 
