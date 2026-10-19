@@ -135,8 +135,8 @@ def buscar_ciudad(nombre_ciudad):
         "format": "json"
     }
 
-   headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) BotClimaDiscord"
+    headers = {   
+         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) BotClimaDiscord"
     }
 
     try:
